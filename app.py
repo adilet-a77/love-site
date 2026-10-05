@@ -1,30 +1,59 @@
-from datetime import datetime
 import streamlit as st
 
-# Настройка вкладки браузера
+# Настройка страницы
 st.set_page_config(
     page_title="Для моей любимой ❤️", page_icon="💖", layout="centered"
 )
 
-# Главный заголовок
-st.title("Сайт специально для тебя! 🥰")
-st.write(
-    "Этот маленький цифровой уголок создан для того, чтобы ты улыбнулась."
+# Кастомные стили для романтической атмосферы
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #fff0f5;
+    }
+    h1, h2, h3 {
+        color: #d81b60;
+    }
+    .stButton>button {
+        background-color: #ff4081;
+        color: white;
+        border-radius: 25px;
+        border: none;
+        padding: 10px 24px;
+        font-weight: bold;
+    }
+    .stButton>button:hover {
+        background-color: #e91e63;
+        color: white;
+    }
+    </style>
+""",
+    unsafe_allow_html=True,
 )
 
+# Заголовок
+st.title("Сайт специально для тебя! 🥰")
+st.write("Этот маленький цифровой уголок создан для того, чтобы ты улыбнулась.")
+
 st.markdown("---")
 
-# Секция с таймером (укажите вашу дату начала отношений!)
-# Введите год, месяц и день вместо цифр ниже:
-start_date = datetime(2024, 1, 1)  # <--- Поменяйте на вашу дату!
-days_together = (datetime.now() - start_date).days
+# Интерактивная кнопка-сюрприз
+if st.button("Нажми для сюрприза! 🎁"):
+    st.balloons()
+    st.success(
+        "Ты — самое прекрасное, что есть в моей жизни! Люблю тебя бесконечно! ❤️"
+    )
 
+st.markdown("---")
+
+# Счетчик времени
 st.subheader("⏳ Время, пока мы вместе:")
-st.metric(label="Дней абсолютного счастья:", value=days_together)
+st.metric(label="Дней абсолютного счастья", value="1008")
 
 st.markdown("---")
 
-# Секция с приятными причинами или комплиментами
+# Интерактивные причины
 st.subheader("💌 Почему ты у меня самая лучшая:")
 
 reasons = [
@@ -34,8 +63,14 @@ reasons = [
     "Твои глаза — самое красивое, что я когда-либо видел 👀",
 ]
 
-for reason in reasons:
-  st.success(reason)
+for i, reason in enumerate(reasons, 1):
+    with st.expander(f"Причина №{i} 💖"):
+        st.write(reason)
 
 st.markdown("---")
-st.write("Сделано с бесконечной любовью и заботой специально для тебя! 💖")
+
+# Секретное послание внизу
+st.markdown(
+    "<h3 style='text-align: center; color: #ad1457;'>Сделано с бесконечной любовью и заботой специально для тебя! 🌹</h3>",
+    unsafe_allow_html=True,
+)
